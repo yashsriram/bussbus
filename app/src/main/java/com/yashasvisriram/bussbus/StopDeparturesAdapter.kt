@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginEnd
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 

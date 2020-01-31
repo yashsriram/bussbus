@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         restCall(apiService, "16154", "RecWell")
 
         // Swipe refresh setup
-        swipeContainer.setOnRefreshListener {
+        refreshView.setOnClickListener {
             restCall(apiService, "16154", "RecWell")
         }
 
@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
                     stopHintView1.text = stopDescription
                     stopDeparturesView1.adapter = StopDeparturesAdapter(stopDepartures, this@MainActivity)
-                    swipeContainer.isRefreshing = false
                     lastSyncTimestamp = System.currentTimeMillis()
                     updateTimeSinceLastSync()
                 }
@@ -87,7 +86,6 @@ class MainActivity : AppCompatActivity() {
                         "Could not get departures from $stopDescription (Stop #$stopId)",
                         Snackbar.LENGTH_LONG
                     ).show()
-                    swipeContainer.isRefreshing = false
                 }
             })
     }
