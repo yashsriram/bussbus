@@ -19,20 +19,28 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/timeSinceLastSyncView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:text="1 min since last sync"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/stopHint1"
+                        android:id="@+id/stopHintView1"
                         style="@style/TextAppearance.AppCompat.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stopDepartures1"
+                        android:id="@+id/stopDeparturesView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>

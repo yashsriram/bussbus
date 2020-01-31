@@ -1,6 +1,7 @@
 package com.yashasvisriram.bussbus
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -20,13 +21,28 @@ class MainActivity : AppCompatActivity() {
     private val baseUrl = "https://svc.metrotransit.org/"
     private val compositeDisposable = CompositeDisposable()
 
+    // Fields for keeping track of last synced time
+    private var lastSyncTimestamp = System.currentTimeMillis()
+    private val checkInterval = 5000L
+    private val lastSyncHandler: Handler = Handler()
+    private val lastSyncRunnable: Runnable = object : Runnable {
+        override fun run() {
+            try {
+                val timeSinceLastSyncInMillis = System.currentTimeMillis() - lastSyncTimestamp
+                timeSinceLastSyncView.text = "${timeSinceLastSyncInMillis / 1000 / 60} min since last sync"
+            } finally {
+                lastSyncHandler.postDelayed(this, checkInterval)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // UI setup
-        stopDepartures1.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        stopDeparturesView1.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         // REST service setup
         val retrofit = Retrofit.Builder()
@@ -43,6 +59,9 @@ class MainActivity : AppCompatActivity() {
         swipeContainer.setOnRefreshListener {
             restCall(apiService, "16154", "RecWell")
         }
+
+        // Time since last sync setup
+        lastSyncRunnable.run()
     }
 
     private fun restCall(apiService: ApiService, stopId: String, stopDescription: String) {
@@ -52,9 +71,10 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
-                    stopDepartures1.adapter = StopDeparturesAdapter(stopDepartures)
-                    stopHint1.text = stopDescription
+                    stopDeparturesView1.adapter = StopDeparturesAdapter(stopDepartures)
+                    stopHintView1.text = stopDescription
                     swipeContainer.isRefreshing = false
+                    lastSyncTimestamp = System.currentTimeMillis()
                 }
 
                 override fun onSubscribe(d: Disposable) {
@@ -63,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onError(e: Throwable) {
                     Snackbar.make(
-                        stopDepartures1,
+                        stopDeparturesView1,
                         "Could not get departures from $stopDescription (Stop #$stopId)",
                         Snackbar.LENGTH_LONG
                     ).show()
@@ -77,5 +97,6 @@ class MainActivity : AppCompatActivity() {
             compositeDisposable.dispose()
         }
         super.onDestroy()
+        lastSyncHandler.removeCallbacks(lastSyncRunnable)
     }
 }
