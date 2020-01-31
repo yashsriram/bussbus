@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val lastSyncRunnable: Runnable = object : Runnable {
         override fun run() {
             try {
-                val timeSinceLastSyncInMillis = System.currentTimeMillis() - lastSyncTimestamp
-                timeSinceLastSyncView.text = "${timeSinceLastSyncInMillis / 1000 / 60} min since last sync"
+                updateTimeSinceLastSync()
             } finally {
                 lastSyncHandler.postDelayed(this, checkInterval)
             }
@@ -71,10 +70,11 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
-                    stopDeparturesView1.adapter = StopDeparturesAdapter(stopDepartures)
                     stopHintView1.text = stopDescription
+                    stopDeparturesView1.adapter = StopDeparturesAdapter(stopDepartures)
                     swipeContainer.isRefreshing = false
                     lastSyncTimestamp = System.currentTimeMillis()
+                    updateTimeSinceLastSync()
                 }
 
                 override fun onSubscribe(d: Disposable) {
@@ -90,6 +90,11 @@ class MainActivity : AppCompatActivity() {
                     swipeContainer.isRefreshing = false
                 }
             })
+    }
+
+    private fun updateTimeSinceLastSync() {
+        val timeSinceLastSyncInMillis = System.currentTimeMillis() - lastSyncTimestamp
+        timeSinceLastSyncView.text = "${timeSinceLastSyncInMillis / 1000 / 60} min since last sync"
     }
 
     override fun onDestroy() {
