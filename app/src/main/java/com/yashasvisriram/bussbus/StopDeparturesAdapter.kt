@@ -1,5 +1,6 @@
 package com.yashasvisriram.bussbus
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +16,15 @@ class StopDeparturesAdapter(private val departures: List<StopDeparture>) :
     RecyclerView.Adapter<StopDeparturesAdapter.Holder>() {
 
     class Holder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
-        var description: TextView
+        var view: View
+        var dueDescription: TextView
+        var routeAndTerminal: TextView
 
         init {
             v.setOnClickListener(this)
-            description = v.findViewById(R.id.description)
+            view = v
+            dueDescription = v.findViewById(R.id.dueDescription)
+            routeAndTerminal = v.findViewById(R.id.routeAndTerminal)
         }
 
         override fun onClick(v: View) {
@@ -35,6 +40,10 @@ class StopDeparturesAdapter(private val departures: List<StopDeparture>) :
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val departure = departures[position]
-        holder.description.text = departure.departureText
+        if (departure.actual) {
+            holder.view.setBackgroundColor(Color.GREEN)
+        }
+        holder.dueDescription.text = departure.departureText
+        holder.routeAndTerminal.text = "${departure.route}${departure.terminal}"
     }
 }
