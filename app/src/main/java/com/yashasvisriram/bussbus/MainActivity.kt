@@ -1,10 +1,9 @@
 package com.yashasvisriram.bussbus
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -27,8 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // UI setup
-        stopDepartures1.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        stopDepartures1.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         // REST service setup
         val retrofit = Retrofit.Builder()
@@ -39,22 +37,23 @@ class MainActivity : AppCompatActivity() {
         val apiService = retrofit.create(ApiService::class.java)
 
         // Initial REST call
-        restCall(apiService)
+        restCall(apiService, "16154", "RecWell")
 
         // Swipe refresh setup
         swipeContainer.setOnRefreshListener {
-            restCall(apiService)
+            restCall(apiService, "16154", "RecWell")
         }
     }
 
-    private fun restCall(apiService: ApiService) {
-        val stopDepartures = apiService.getStopDepartures("16154")
+    private fun restCall(apiService: ApiService, stopId: String, stopDescription: String) {
+        val stopDepartures = apiService.getStopDepartures(stopId)
         stopDepartures!!
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
                     stopDepartures1.adapter = StopDeparturesAdapter(stopDepartures)
+                    stopHint1.text = stopDescription
                     swipeContainer.isRefreshing = false
                 }
 
@@ -63,7 +62,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_LONG).show()
+                    Snackbar.make(
+                        stopDepartures1,
+                        "Could not get departures from $stopDescription (Stop #$stopId)",
+                        Snackbar.LENGTH_LONG
+                    ).show()
                     swipeContainer.isRefreshing = false
                 }
             })
