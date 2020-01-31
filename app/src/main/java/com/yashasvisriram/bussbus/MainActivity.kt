@@ -98,6 +98,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
+                    stopHintView.text = stopDescription
                     Snackbar.make(
                         stopDeparturesRecyclerView,
                         "Could not get departures from $stopDescription (Stop #$stopId)",
