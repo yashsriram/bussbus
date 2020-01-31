@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="10sp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="10sp">
 
     <TextView
         android:id="@+id/dueDescription"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:text="5 min"
         android:paddingEnd="10sp"
+        android:text="5 min"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/routeAndTerminal"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.Large"
         android:text="6D"
         app:layout_constraintStart_toEndOf="@id/dueDescription"
         app:layout_constraintTop_toTopOf="parent" />

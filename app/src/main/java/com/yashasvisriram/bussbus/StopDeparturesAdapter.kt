@@ -1,18 +1,23 @@
 package com.yashasvisriram.bussbus
 
-import android.graphics.Color
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }
 
-class StopDeparturesAdapter(private val departures: List<StopDeparture>) :
+class StopDeparturesAdapter(
+    private val departures: List<StopDeparture>,
+    private val context: Context
+) :
     RecyclerView.Adapter<StopDeparturesAdapter.Holder>() {
 
     class Holder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
@@ -40,9 +45,11 @@ class StopDeparturesAdapter(private val departures: List<StopDeparture>) :
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val departure = departures[position]
-        if (departure.actual) {
-            holder.view.setBackgroundColor(Color.GREEN)
+        holder.view.background = when (departure.actual) {
+            true -> ContextCompat.getDrawable(context, R.drawable.live_departure)
+            false -> ContextCompat.getDrawable(context, R.drawable.normal_departure)
         }
+        holder.view.setPadding(20)
         holder.dueDescription.text = departure.departureText
         holder.routeAndTerminal.text = "${departure.route}${departure.terminal}"
     }

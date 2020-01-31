@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
                     stopHintView1.text = stopDescription
-                    stopDeparturesView1.adapter = StopDeparturesAdapter(stopDepartures)
+                    stopDeparturesView1.adapter = StopDeparturesAdapter(stopDepartures, this@MainActivity)
                     swipeContainer.isRefreshing = false
                     lastSyncTimestamp = System.currentTimeMillis()
                     updateTimeSinceLastSync()
