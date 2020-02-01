@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        title = "Departures at a glance"
 
         // REST service setup
         val retrofit = Retrofit.Builder()
@@ -66,15 +67,15 @@ class MainActivity : AppCompatActivity() {
         // Initial REST calls
         restCall(apiService, "16154", "RecWell", stopHintView1, stopDeparturesRecyclerView1)
         restCall(apiService, "13209", "CMU", stopHintView2, stopDeparturesRecyclerView2)
-        restCall(apiService, "56699", "2 Stop", stopHintView3, stopDeparturesRecyclerView3)
-        restCall(apiService, "16132", "6 Stop", stopHintView4, stopDeparturesRecyclerView4)
+        restCall(apiService, "56699", "2@Home", stopHintView3, stopDeparturesRecyclerView3)
+        restCall(apiService, "16132", "6@Home", stopHintView4, stopDeparturesRecyclerView4)
 
         // Sync setup
         refreshView.setOnClickListener {
             restCall(apiService, "16154", "RecWell", stopHintView1, stopDeparturesRecyclerView1)
             restCall(apiService, "13209", "CMU", stopHintView2, stopDeparturesRecyclerView2)
-            restCall(apiService, "56699", "2 Stop", stopHintView3, stopDeparturesRecyclerView3)
-            restCall(apiService, "16132", "6 Stop", stopHintView4, stopDeparturesRecyclerView4)
+            restCall(apiService, "56699", "2@Home", stopHintView3, stopDeparturesRecyclerView3)
+            restCall(apiService, "16132", "6@Home", stopHintView4, stopDeparturesRecyclerView4)
         }
 
         // Time since last sync setup
