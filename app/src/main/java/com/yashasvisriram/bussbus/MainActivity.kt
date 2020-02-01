@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateTimeSinceLastSync() {
         val timeSinceLastSyncInMillis = System.currentTimeMillis() - lastSyncTimestamp
-        timeSinceLastSyncView.text = "${timeSinceLastSyncInMillis / 1000 / 60} min since last"
+        refreshView.text = "${timeSinceLastSyncInMillis / 1000 / 60} min ago"
     }
 
     override fun onDestroy() {

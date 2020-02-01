@@ -14,6 +14,7 @@
         android:fontFamily="monospace"
         android:paddingEnd="10sp"
         android:text="5 min"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="6D"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@id/dueDescription"
         app:layout_constraintTop_toTopOf="parent" />
 
