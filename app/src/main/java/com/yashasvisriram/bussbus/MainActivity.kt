@@ -76,23 +76,27 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         stopDeparturesRecyclerView4.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        stopDeparturesRecyclerView5.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         // Initial REST calls
-        restCall(apiService, "16154", "RecWell", stopHintView1, stopDeparturesRecyclerView1)
-        restCall(apiService, "13209", "CMU", stopHintView2, stopDeparturesRecyclerView2)
-        restCall(apiService, "56699", "2@Home", stopHintView3, stopDeparturesRecyclerView3)
-        restCall(apiService, "16132", "6@Home", stopHintView4, stopDeparturesRecyclerView4)
+        sync(apiService)
 
         // Sync setup
         refreshView.setOnClickListener {
-            restCall(apiService, "16154", "RecWell", stopHintView1, stopDeparturesRecyclerView1)
-            restCall(apiService, "13209", "CMU", stopHintView2, stopDeparturesRecyclerView2)
-            restCall(apiService, "56699", "2@Home", stopHintView3, stopDeparturesRecyclerView3)
-            restCall(apiService, "16132", "6@Home", stopHintView4, stopDeparturesRecyclerView4)
+            sync(apiService)
         }
 
         // Time since last sync setup
         lastSyncRunnable.run()
+    }
+
+    private fun sync(apiService: ApiService) {
+        restCall(apiService, "13209", "CMU", stopHintView1, stopDeparturesRecyclerView1)
+        restCall(apiService, "16154", "RecWell", stopHintView2, stopDeparturesRecyclerView2)
+        restCall(apiService, "16157", "Armory", stopHintView3, stopDeparturesRecyclerView3)
+        restCall(apiService, "56699", "2@Home", stopHintView4, stopDeparturesRecyclerView4)
+        restCall(apiService, "16132", "6@Home", stopHintView5, stopDeparturesRecyclerView5)
     }
 
     private fun restCall(
