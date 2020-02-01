@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -39,12 +40,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Fields for UI
-    private val stopDescriptionLen = 8
+    private val stopDescriptionLen = 7
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         title = "Departures at a glance"
+        val backgrounds = arrayListOf(
+            R.drawable.backdrop1,
+            R.drawable.backdrop2,
+            R.drawable.backdrop3,
+            R.drawable.backdrop4,
+            R.drawable.backdrop5,
+            R.drawable.backdrop6,
+            R.drawable.backdrop7,
+            R.drawable.backdrop8
+        )
+        activityMainLayout.background =
+            ContextCompat.getDrawable(this, backgrounds.getRandomElement())
 
         // REST service setup
         val retrofit = Retrofit.Builder()
@@ -95,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
-                    stopHintView.text = padOrTruncateString(stopDescription, stopDescriptionLen)
+                    stopHintView.text = "${padOrTruncateString(stopDescription, stopDescriptionLen)} ᐅ "
                     stopDeparturesRecyclerView.adapter =
                         StopDeparturesAdapter(stopDepartures, this@MainActivity)
                     lastSyncTimestamp = System.currentTimeMillis()
@@ -107,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    stopHintView.text = padOrTruncateString(stopDescription, stopDescriptionLen)
+                    stopHintView.text = "${padOrTruncateString(stopDescription, stopDescriptionLen)} ᐅ "
                     Snackbar.make(
                         stopDeparturesRecyclerView,
                         "Could not get departures from $stopDescription (Stop #$stopId)",
@@ -119,7 +132,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateTimeSinceLastSync() {
         val timeSinceLastSyncInMillis = System.currentTimeMillis() - lastSyncTimestamp
-        timeSinceLastSyncView.text = "${timeSinceLastSyncInMillis / 1000 / 60} min since last sync"
+        timeSinceLastSyncView.text = "${timeSinceLastSyncInMillis / 1000 / 60} min since last"
     }
 
     override fun onDestroy() {
