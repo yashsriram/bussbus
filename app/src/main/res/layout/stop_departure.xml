@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginEnd="15sp">
+    android:layout_marginEnd="15sp"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/dueDescription"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="monospace"
         android:paddingEnd="10sp"
         android:text="5 min"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +22,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="monospace"
         android:text="6D"
         app:layout_constraintStart_toEndOf="@id/dueDescription"
         app:layout_constraintTop_toTopOf="parent" />

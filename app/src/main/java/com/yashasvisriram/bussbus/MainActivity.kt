@@ -20,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
+    // Fields for REST service
     private val baseUrl = "https://svc.metrotransit.org/"
     private val compositeDisposable = CompositeDisposable()
 
@@ -37,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Fields for UI
+    private val stopDescriptionLen = 8
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,10 +54,14 @@ class MainActivity : AppCompatActivity() {
         val apiService = retrofit.create(ApiService::class.java)
 
         // UI setup
-        stopDeparturesRecyclerView1.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        stopDeparturesRecyclerView2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        stopDeparturesRecyclerView3.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        stopDeparturesRecyclerView4.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        stopDeparturesRecyclerView1.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        stopDeparturesRecyclerView2.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        stopDeparturesRecyclerView3.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        stopDeparturesRecyclerView4.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         // Initial REST calls
         restCall(apiService, "16154", "RecWell", stopHintView1, stopDeparturesRecyclerView1)
@@ -86,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
-                    stopHintView.text = stopDescription
+                    stopHintView.text = padOrTruncateString(stopDescription, stopDescriptionLen)
                     stopDeparturesRecyclerView.adapter =
                         StopDeparturesAdapter(stopDepartures, this@MainActivity)
                     lastSyncTimestamp = System.currentTimeMillis()
@@ -98,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    stopHintView.text = stopDescription
+                    stopHintView.text = padOrTruncateString(stopDescription, stopDescriptionLen)
                     Snackbar.make(
                         stopDeparturesRecyclerView,
                         "Could not get departures from $stopDescription (Stop #$stopId)",
