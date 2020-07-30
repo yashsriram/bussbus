@@ -1,12 +1,10 @@
 package com.yashasvisriram.bussbus
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -101,6 +99,15 @@ class StopDeparturesTableActivity : AppCompatActivity() {
 
         // Time since last sync setup
         lastSyncRunnable.run()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.addStop -> {
+            val intent = Intent(this, AddStopActivity::class.java)
+            startActivity(intent)
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
