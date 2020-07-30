@@ -18,6 +18,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_stop_departures_table.*
 import kotlinx.android.synthetic.main.activity_stop_departures_table.view.*
+import kotlinx.android.synthetic.main.stop_departure.view.*
 import kotlinx.android.synthetic.main.stop_departures_row.view.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -179,20 +180,12 @@ private class StopDeparturesAdapter(
 ) :
     RecyclerView.Adapter<StopDeparturesAdapter.Holder>() {
 
-    private class Holder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
-        var view: View
-        var due: TextView
-        var routeAndTerminal: TextView
-
+    private class Holder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         init {
-            v.setOnClickListener(this)
-            view = v
-            due = v.findViewById(R.id.due)
-            routeAndTerminal = v.findViewById(R.id.routeAndTerminal)
+            view.setOnClickListener(this)
         }
 
-        override fun onClick(v: View) {
-        }
+        override fun onClick(v: View) {}
     }
 
     override fun getItemCount() = departures.size
@@ -209,9 +202,9 @@ private class StopDeparturesAdapter(
             true -> ContextCompat.getDrawable(context, R.drawable.live_departure)
             false -> ContextCompat.getDrawable(context, R.drawable.normal_departure)
         }
-        holder.view.setPadding(20, 20, 20, 20)
-        holder.due.text = " ${departure.departureText!!}".padOrTruncateString(7)
-        holder.routeAndTerminal.text =
-            "${departure.route}${departure.terminal} ".padOrTruncateString(3)
+        holder.view.setPadding(40, 20, 40, 20)
+        holder.view.due.text = departure.departureText!!.padOrTruncateString(7)
+        holder.view.route.text = departure.route!!.padOrTruncateString(1)
+        holder.view.terminal.text = departure.terminal!!.padOrTruncateString(1)
     }
 }
