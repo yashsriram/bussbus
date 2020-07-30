@@ -1,6 +1,7 @@
 package com.yashasvisriram.bussbus
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -32,7 +33,8 @@ class StopDeparturesAdapter(
     override fun getItemCount() = departures.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val inflatedView = parent.inflate(R.layout.stop_departure, false)
+        val inflatedView =
+            LayoutInflater.from(context).inflate(R.layout.stop_departure, parent, false)
         return Holder(inflatedView)
     }
 
