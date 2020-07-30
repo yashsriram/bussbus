@@ -26,7 +26,7 @@
         android:layout_marginBottom="24dp"
         android:contentDescription="refresh button"
         android:text="0 Min ago"
-        app:icon="@drawable/ic_sync_black_24dp"
+        app:icon="@drawable/ic_sync"
         app:layout_anchor="@id/activityMainLayout"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintEnd_toEndOf="parent"
