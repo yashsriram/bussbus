@@ -18,6 +18,7 @@
 - [x] Scroll view in stop departures activity.
 - [x] Display stop name before requesting departuresList. Useful when departuresList comes with a lag.
 - [ ] Decrease num of id references to xml elements.
+- [ ] Improve styling.
 
 ## code
 - This is a minimal android project.
