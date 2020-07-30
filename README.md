@@ -7,12 +7,14 @@
 ## roadmap
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Adding a stop.
-    - [ ] Where can stop ids be found?
-    - [ ] StopId validation: len.
+    - [x] Where can stop ids be found? - Link provided.
+    - [ ] StopId validation: len. can it be exactly 6?
     - [ ] StopName validation: name & uniqueness.
+    - [ ] db add
     - [ ] finish() on add.
 - [ ] Removing a stop.
     - [ ] Recycler view.
+    - [ ] db remove
     - [ ] finish() on remove.
 - [ ] Updated list on add/remove finish() return.
 - [x] Scroll view in stop departures activity.
@@ -34,5 +36,6 @@
 - The departures are not automatically updated. A sync button on the bottom shows how long ago was the last sync. Press that button to sync again.
 - Similarly remove stops when not needed.
 - No login required.
+- If a stop's departures can not be fetched, its id might be wrong. Try removing and adding it again.
 
 ## demonstration
