@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -159,10 +159,10 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    Snackbar.make(
-                        stopDeparturesListView,
+                    Toast.makeText(
+                        this@StopDeparturesTableActivity,
                         "Could not get departures from $stopName (Stop #$stopId)",
-                        Snackbar.LENGTH_LONG
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             })
