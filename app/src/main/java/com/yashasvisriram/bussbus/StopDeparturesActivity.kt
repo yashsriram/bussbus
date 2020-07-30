@@ -42,11 +42,8 @@ class StopDeparturesActivity : AppCompatActivity() {
         }
     }
 
-    // UI
-    private val stopNameLen = 7
-
     // Mock db
-    private val stopsFile = arrayListOf(
+    private val file = arrayListOf(
         arrayListOf("13209", "CMU1"),
         arrayListOf("16154", "RecWell"),
         arrayListOf("16157", "Armory"),
@@ -74,7 +71,7 @@ class StopDeparturesActivity : AppCompatActivity() {
             ContextCompat.getDrawable(this, backgrounds.random())
 
         // UI setup
-        for (entry in stopsFile) {
+        for (entry in file) {
             val row = LayoutInflater.from(this)
                 .inflate(R.layout.stop_departures_row, activityMainLayout.table, false)
             row.departuresList.layoutManager =
@@ -103,13 +100,13 @@ class StopDeparturesActivity : AppCompatActivity() {
     }
 
     private fun sync(apiService: ApiService) {
-        for (i in 0 until stopsFile.size) {
+        for (i in 0 until file.size) {
             restCall(
                 apiService,
-                stopsFile[i][0],
-                stopsFile[i][1],
-                activityMainLayout.table.getChildAt(i).name,
-                activityMainLayout.table.getChildAt(i).departuresList
+                file[i][0],
+                activityMainLayout.table.getChildAt(i).departuresList,
+                "${file[i][1].padOrTruncateString(7)} ᐅ ",
+                activityMainLayout.table.getChildAt(i).name
             )
         }
     }
@@ -117,18 +114,18 @@ class StopDeparturesActivity : AppCompatActivity() {
     private fun restCall(
         apiService: ApiService,
         stopId: String,
-        stopDescription: String,
-        stopHintView: TextView,
-        stopDeparturesRecyclerView: RecyclerView
+        stopDeparturesListView: RecyclerView,
+        stopName: String,
+        stopNameView: TextView
     ) {
-        val stopDepartures = apiService.getStopDepartures(stopId)
-        stopDepartures!!
+        val stopDeparturesListFuture = apiService.getStopDepartures(stopId)
+        stopDeparturesListFuture!!
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
-                    stopHintView.text = "${stopDescription.padOrTruncateString(stopNameLen)} ᐅ "
-                    stopDeparturesRecyclerView.adapter =
+                    stopNameView.text = stopName
+                    stopDeparturesListView.adapter =
                         StopDeparturesAdapter(stopDepartures, this@StopDeparturesActivity)
                     lastSyncTimestamp = System.currentTimeMillis()
                     updateTimeSinceLastSync()
@@ -139,10 +136,10 @@ class StopDeparturesActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    stopHintView.text = "${stopDescription.padOrTruncateString(stopNameLen)} ᐅ "
+                    stopNameView.text = stopName
                     Snackbar.make(
-                        stopDeparturesRecyclerView,
-                        "Could not get departures from $stopDescription (Stop #$stopId)",
+                        stopDeparturesListView,
+                        "Could not get departures from $stopName (Stop #$stopId)",
                         Snackbar.LENGTH_LONG
                     ).show()
                 }
