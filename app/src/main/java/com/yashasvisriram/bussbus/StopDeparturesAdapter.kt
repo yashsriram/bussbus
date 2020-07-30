@@ -44,6 +44,7 @@ class StopDeparturesAdapter(
         }
         holder.view.setPadding(20, 20, 20, 20)
         holder.due.text = " ${departure.departureText!!}".padOrTruncateString(7)
-        holder.routeAndTerminal.text = "${departure.route}${departure.terminal} ".padOrTruncateString(3)
+        holder.routeAndTerminal.text =
+            "${departure.route}${departure.terminal} ".padOrTruncateString(3)
     }
 }
