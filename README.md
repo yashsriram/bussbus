@@ -15,7 +15,7 @@
     - [ ] Recycler view.
     - [ ] finish() on remove.
 - [ ] Updated list on add/remove finish() return.
-- [ ] Scroll view in stop departures activity?
+- [x] Scroll view in stop departures activity.
 - [ ] Decrease num of id references to xml elements.
 
 ## code
