@@ -71,7 +71,7 @@ class StopDeparturesActivity : AppCompatActivity() {
             R.drawable.backdrop8
         )
         activityMainLayout.background =
-            ContextCompat.getDrawable(this, backgrounds.getRandomElement())
+            ContextCompat.getDrawable(this, backgrounds.random())
 
         // UI setup
         for (entry in stopsFile) {
@@ -127,7 +127,7 @@ class StopDeparturesActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
-                    stopHintView.text = "${padOrTruncateString(stopDescription, stopNameLen)} ᐅ "
+                    stopHintView.text = "${stopDescription.padOrTruncateString(stopNameLen)} ᐅ "
                     stopDeparturesRecyclerView.adapter =
                         StopDeparturesAdapter(stopDepartures, this@StopDeparturesActivity)
                     lastSyncTimestamp = System.currentTimeMillis()
@@ -139,7 +139,7 @@ class StopDeparturesActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    stopHintView.text = "${padOrTruncateString(stopDescription, stopNameLen)} ᐅ "
+                    stopHintView.text = "${stopDescription.padOrTruncateString(stopNameLen)} ᐅ "
                     Snackbar.make(
                         stopDeparturesRecyclerView,
                         "Could not get departures from $stopDescription (Stop #$stopId)",
