@@ -50,7 +50,7 @@ class StopDeparturesAdapter(
             true -> ContextCompat.getDrawable(context, R.drawable.live_departure)
             false -> ContextCompat.getDrawable(context, R.drawable.normal_departure)
         }
-        holder.view.setPadding(20)
+        holder.view.setPadding(20, 20, 20, 20)
         holder.dueDescription.text = padOrTruncateString(" ${departure.departureText!!}", 7)
         holder.routeAndTerminal.text = padOrTruncateString("${departure.route}${departure.terminal} ", 3)
     }
