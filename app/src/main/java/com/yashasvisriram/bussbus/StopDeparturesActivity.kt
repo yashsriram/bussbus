@@ -132,13 +132,13 @@ class StopDeparturesActivity : AppCompatActivity() {
         stopName: String,
         stopNameView: TextView
     ) {
+        stopNameView.text = stopName
         val stopDeparturesListFuture = apiService.getStopDepartures(stopId)
         stopDeparturesListFuture!!
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
-                    stopNameView.text = stopName
                     stopDeparturesListView.adapter =
                         StopDeparturesAdapter(stopDepartures, this@StopDeparturesActivity)
                     lastSyncTimestamp = System.currentTimeMillis()
@@ -150,7 +150,6 @@ class StopDeparturesActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    stopNameView.text = stopName
                     Snackbar.make(
                         stopDeparturesListView,
                         "Could not get departures from $stopName (Stop #$stopId)",

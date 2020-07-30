@@ -16,6 +16,7 @@
     - [ ] finish() on remove.
 - [ ] Updated list on add/remove finish() return.
 - [x] Scroll view in stop departures activity.
+- [x] Display stop name before requesting departuresList. Useful when departuresList comes with a lag.
 - [ ] Decrease num of id references to xml elements.
 
 ## code
