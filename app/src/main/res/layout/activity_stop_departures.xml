@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activityMainLayout"
+    android:id="@+id/activityStopDepartures"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backdrop1"
@@ -19,17 +19,15 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/refreshView"
+        android:id="@+id/sync"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:contentDescription="refresh button"
         android:text="0 Min ago"
         app:icon="@drawable/ic_sync"
-        app:layout_anchor="@id/activityMainLayout"
         app:layout_anchorGravity="bottom|right|end"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

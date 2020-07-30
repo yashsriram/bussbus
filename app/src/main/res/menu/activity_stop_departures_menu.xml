@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/add_stop"
+        android:id="@+id/addStop"
         android:icon="@drawable/ic_plus"
         android:title="Add stop"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/remove_stop"
+        android:id="@+id/removeStop"
         android:icon="@drawable/ic_minus"
         android:title="Remove stop"
         app:showAsAction="ifRoom" />
