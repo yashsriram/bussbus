@@ -9,119 +9,12 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="25sp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10sp">
-
-            <TextView
-                android:id="@+id/stopHintView1"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:padding="10sp"
-                android:textColor="@android:color/black" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stopDeparturesRecyclerView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10sp">
-
-            <TextView
-                android:id="@+id/stopHintView2"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:padding="10sp"
-                android:textColor="@android:color/black" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stopDeparturesRecyclerView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10sp">
-
-            <TextView
-                android:id="@+id/stopHintView3"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:padding="10sp"
-                android:textColor="@android:color/black" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stopDeparturesRecyclerView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10sp">
-
-            <TextView
-                android:id="@+id/stopHintView4"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:padding="10sp"
-                android:textColor="@android:color/black" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stopDeparturesRecyclerView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10sp">
-
-            <TextView
-                android:id="@+id/stopHintView5"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:padding="10sp"
-                android:textColor="@android:color/black" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stopDeparturesRecyclerView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
 
     </LinearLayout>
 
