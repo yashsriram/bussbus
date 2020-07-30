@@ -3,7 +3,6 @@ package com.yashasvisriram.bussbus
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -15,15 +14,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_stop_departures.*
+import kotlinx.android.synthetic.main.activity_stop_departures.view.*
 import kotlinx.android.synthetic.main.stop_departures_row.view.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class MainActivity : AppCompatActivity() {
+class StopDeparturesActivity : AppCompatActivity() {
 
     // REST service
     private val baseUrl = "https://svc.metrotransit.org/"
@@ -57,8 +56,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        title = "Departures at a glance"
+        setContentView(R.layout.activity_stop_departures)
+        title = "Departures per stop"
 
         // Pick a random backdrop
         val backgrounds = arrayListOf(
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             .build()
         val apiService = retrofit.create(ApiService::class.java)
 
-        // Initial REST calls
+        // Initial REST call
         sync(apiService)
 
         // Sync setup
@@ -130,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
                     stopHintView.text = "${padOrTruncateString(stopDescription, stopNameLen)} ᐅ "
                     stopDeparturesRecyclerView.adapter =
-                        StopDeparturesAdapter(stopDepartures, this@MainActivity)
+                        StopDeparturesAdapter(stopDepartures, this@StopDeparturesActivity)
                     lastSyncTimestamp = System.currentTimeMillis()
                     updateTimeSinceLastSync()
                 }
