@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
-        <activity android:name=".StopDeparturesActivity">
+        <activity android:name=".StopDeparturesTableActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

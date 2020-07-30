@@ -18,15 +18,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_stop_departures.*
-import kotlinx.android.synthetic.main.activity_stop_departures.view.*
+import kotlinx.android.synthetic.main.activity_stop_departures_table.*
+import kotlinx.android.synthetic.main.activity_stop_departures_table.view.*
 import kotlinx.android.synthetic.main.stop_departures_row.view.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class StopDeparturesActivity : AppCompatActivity() {
+class StopDeparturesTableActivity : AppCompatActivity() {
 
     // REST service
     private val baseUrl = "https://svc.metrotransit.org/"
@@ -57,7 +57,7 @@ class StopDeparturesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stop_departures)
+        setContentView(R.layout.activity_stop_departures_table)
         title = "Departures per stop"
 
         // Pick a random backdrop
@@ -104,7 +104,7 @@ class StopDeparturesActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.activity_stop_departures_menu, menu)
+        menuInflater.inflate(R.menu.activity_stop_departures_table_menu, menu)
         return true
     }
 
@@ -143,7 +143,7 @@ class StopDeparturesActivity : AppCompatActivity() {
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
                     stopDeparturesListView.adapter =
-                        StopDeparturesAdapter(stopDepartures, this@StopDeparturesActivity)
+                        StopDeparturesAdapter(stopDepartures, this@StopDeparturesTableActivity)
                     lastSyncTimestamp = System.currentTimeMillis()
                     updateTimeSinceLastSync()
                 }
