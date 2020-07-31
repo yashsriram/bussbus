@@ -193,13 +193,7 @@ private class StopDeparturesAdapter(
 ) :
     RecyclerView.Adapter<StopDeparturesAdapter.Holder>() {
 
-    private class Holder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        init {
-            view.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {}
-    }
+    private class Holder(val view: View) : RecyclerView.ViewHolder(view)
 
     override fun getItemCount() = departures.size
 
