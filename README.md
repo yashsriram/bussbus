@@ -14,12 +14,12 @@
     - [x] db add
     - [x] finish() on add.
 - [x] Read stops from db.
-- [ ] Simplify last sync x min ago periodic update.
-- [ ] Updated list on add/remove finish() return.
+- [x] Updated list on add/remove finish() return.
 - [ ] Removing a stop.
     - [ ] Recycler view.
     - [ ] db remove
     - [ ] finish() on remove.
+- [ ] Simplify last sync x min ago periodic update.
 - [ ] Improve styling.
 - [ ] Decrease num of id references to xml elements.
 
