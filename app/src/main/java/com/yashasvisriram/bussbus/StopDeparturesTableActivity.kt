@@ -93,6 +93,11 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             startActivityForResult(intent, 0)
             true
         }
+        R.id.removeStop -> {
+            val intent = Intent(this, RemoveStopActivity::class.java)
+            startActivityForResult(intent, 0)
+            true
+        }
         else -> super.onOptionsItemSelected(item)
     }
 
