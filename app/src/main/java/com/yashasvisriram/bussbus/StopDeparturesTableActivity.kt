@@ -142,7 +142,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 id,
                 row.departuresList,
                 "${nickname.toString().padOrTruncateString(7)} ᐅ ",
-                row.name
+                row.nickname
             )
         }
     }
