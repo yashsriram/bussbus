@@ -25,7 +25,7 @@ class AddStopActivity : AppCompatActivity() {
             if (stopId.length != 5) {
                 Toast.makeText(
                     this,
-                    "Stop Id has to be 5 chars long",
+                    "Stop Id has to be 5 chars long.",
                     Toast.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
@@ -44,7 +44,7 @@ class AddStopActivity : AppCompatActivity() {
             if (stopNickname.isEmpty()) {
                 Toast.makeText(
                     this,
-                    "Stop Nickname can not be empty",
+                    "Stop Nickname can not be empty.",
                     Toast.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
@@ -63,7 +63,7 @@ class AddStopActivity : AppCompatActivity() {
             val isAdded = sp.edit().putString(stopId, stopNickname).commit()
             // Added?
             if (!isAdded) {
-                Toast.makeText(this, "Could not add stop", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Could not add stop.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             finish()

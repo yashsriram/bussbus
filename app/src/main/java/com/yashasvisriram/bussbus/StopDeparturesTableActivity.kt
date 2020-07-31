@@ -174,7 +174,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 override fun onError(e: Throwable) {
                     Toast.makeText(
                         this@StopDeparturesTableActivity,
-                        "Could not get departures from $stopName (Stop #$stopId)",
+                        "Could not get departures from $stopName (Stop #$stopId).",
                         Toast.LENGTH_LONG
                     ).show()
                 }

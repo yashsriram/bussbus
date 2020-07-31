@@ -59,7 +59,7 @@ private class StopsAdapter(
             val isRemoved = sp.edit().remove(id).commit()
             // Removed?
             if (!isRemoved) {
-                Toast.makeText(context, "Could not delete stop", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Could not delete stop.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             context.finish()
