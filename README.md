@@ -6,12 +6,14 @@
 
 ## roadmap
 - [ ] Simplify last sync x min ago periodic update.
-- [ ] Adding a stop.
+- [x] Adding a stop.
     - [x] Where can stop ids be found? - Link provided.
-    - [ ] StopId validation: len. can it be exactly 6?
-    - [ ] StopName validation: name & uniqueness.
-    - [ ] db add
-    - [ ] finish() on add.
+    - [x] StopId validation: 0 < len <= 6 & uniqueness.
+    - [x] StopName validation: 0 < name & uniqueness.
+    - [x] db add
+    - [x] finish() on add.
+- [ ] StopId validation: exactly 6?
+- [ ] Read stops from db.
 - [ ] Removing a stop.
     - [ ] Recycler view.
     - [ ] db remove

@@ -1,10 +1,12 @@
 package com.yashasvisriram.bussbus
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_add_stop.*
 import kotlinx.android.synthetic.main.activity_add_stop.view.*
+
 
 class AddStopActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +15,13 @@ class AddStopActivity : AppCompatActivity() {
         title = "Add a stop"
 
         activityAddStop.add.setOnClickListener {
+            val sp =
+                getSharedPreferences(
+                    getString(R.string.stop_id_stop_nickname_sp),
+                    Context.MODE_PRIVATE
+                )
             val stopId = activityAddStop.stopId.text.toString()
+            // 0 < len
             if (stopId.isEmpty()) {
                 Toast.makeText(
                     this,
@@ -22,15 +30,26 @@ class AddStopActivity : AppCompatActivity() {
                 ).show()
                 return@setOnClickListener
             }
+            // len <= 6
             if (stopId.length > 6) {
                 Toast.makeText(
                     this,
-                    "Stop Id can not be more than 6 digits long",
+                    "Stop Id can not be more than 6 chars long",
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
+            // Uniqueness
+            if (sp.getString(stopId, null) != null) {
+                Toast.makeText(
+                    this,
+                    "This stop is already added.",
                     Toast.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
             }
             val stopNickname = activityAddStop.stopNickname.text.toString()
+            // 0 < len
             if (stopNickname.isEmpty()) {
                 Toast.makeText(
                     this,
@@ -39,7 +58,22 @@ class AddStopActivity : AppCompatActivity() {
                 ).show()
                 return@setOnClickListener
             }
-            println("hesoyam ${stopId} ${stopNickname}")
+            // Uniqueness
+            for ((_, nickname) in sp.all.entries) {
+                if (nickname == stopNickname) {
+                    Toast.makeText(
+                        this,
+                        "This nickname is already used. Please use something else.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setOnClickListener
+                }
+            }
+            with(sp.edit()) {
+                putString(stopId, stopNickname)
+                commit()
+            }
+            finish()
         }
     }
 }
