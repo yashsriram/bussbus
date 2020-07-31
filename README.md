@@ -19,9 +19,8 @@
     - [x] Recycler view.
     - [x] db remove
     - [x] finish() on remove.
-- [ ] Simplify Holder object.
-- [ ] Inline shared pref commit()
-- [ ] Error check shared pref commit()
+- [x] Simplify Holder object.
+- [x] Inline shared pref commit() & Error check shared pref commit()
 - [ ] Improve Toast message
 - [ ] Improve validation comments
 - [ ] Simplify last sync x min ago periodic update.

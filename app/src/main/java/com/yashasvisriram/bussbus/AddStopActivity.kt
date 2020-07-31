@@ -60,9 +60,11 @@ class AddStopActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
             }
-            with(sp.edit()) {
-                putString(stopId, stopNickname)
-                commit()
+            val isAdded = sp.edit().putString(stopId, stopNickname).commit()
+            // Added?
+            if (!isAdded) {
+                Toast.makeText(this, "Could not add stop", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
             finish()
         }
