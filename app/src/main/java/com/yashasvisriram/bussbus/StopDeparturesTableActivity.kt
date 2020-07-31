@@ -71,11 +71,11 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         val apiService = retrofit.create(ApiService::class.java)
 
         // Initial REST call
-        sync(apiService)
+        reload(apiService)
 
         // Sync setup
         activityStopDepartures.sync.setOnClickListener {
-            sync(apiService)
+            reload(apiService)
         }
 
         // Time since last sync setup
@@ -90,10 +90,21 @@ class StopDeparturesTableActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.addStop -> {
             val intent = Intent(this, AddStopActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, 0)
             true
         }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val retrofit = Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+        val apiService = retrofit.create(ApiService::class.java)
+        reload(apiService)
     }
 
     override fun onDestroy() {
@@ -104,7 +115,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         lastSyncHandler.removeCallbacks(lastSyncRunnable)
     }
 
-    private fun sync(apiService: ApiService) {
+    private fun reload(apiService: ApiService) {
         // Get stops from persistent storage
         val sp =
             getSharedPreferences(
