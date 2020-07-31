@@ -23,11 +23,10 @@ class RemoveStopActivity : AppCompatActivity() {
             getString(R.string.stop_id_stop_nickname_sp),
             Context.MODE_PRIVATE
         )
-        val stopIdNicknameList = sp.all.map { Pair(it.key!!, it.value!!.toString()) }
         activityRemoveStop.table.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         activityRemoveStop.table.adapter =
-            StopsAdapter(stopIdNicknameList, this)
+            StopsAdapter(sp.all.map { Pair(it.key!!, it.value!!.toString()) }, this)
 
     }
 }
