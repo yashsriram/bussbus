@@ -15,10 +15,15 @@
     - [x] finish() on add.
 - [x] Read stops from db.
 - [x] Updated list on add/remove finish() return.
-- [ ] Removing a stop.
-    - [ ] Recycler view.
-    - [ ] db remove
-    - [ ] finish() on remove.
+- [x] Removing a stop.
+    - [x] Recycler view.
+    - [x] db remove
+    - [x] finish() on remove.
+- [ ] Simplify Holder object.
+- [ ] Inline shared pref commit()
+- [ ] Error check shared pref commit()
+- [ ] Improve Toast message
+- [ ] Improve validation comments
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Improve styling.
 - [ ] Decrease num of id references to xml elements.

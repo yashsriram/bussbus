@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,6 @@ class RemoveStopActivity : AppCompatActivity() {
         setContentView(R.layout.activity_remove_stop)
         title = "Remove a stop"
 
-        // Get stops from persistent storage
         val sp = getSharedPreferences(
             getString(R.string.stop_id_stop_nickname_sp),
             Context.MODE_PRIVATE
@@ -33,17 +33,11 @@ class RemoveStopActivity : AppCompatActivity() {
 
 private class StopsAdapter(
     private val stops: List<Pair<String, String>>,
-    private val context: Context
+    private val context: AppCompatActivity
 ) :
     RecyclerView.Adapter<StopsAdapter.Holder>() {
 
-    private class Holder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        init {
-            view.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {}
-    }
+    private class Holder(val view: View) : RecyclerView.ViewHolder(view)
 
     override fun getItemCount() = stops.size
 
@@ -57,5 +51,18 @@ private class StopsAdapter(
         val (id, nickname) = stops[position]
         holder.view.stopId.text = id
         holder.view.stopNickname.text = nickname
+        holder.view.remove.setOnClickListener {
+            val sp = context.getSharedPreferences(
+                context.getString(R.string.stop_id_stop_nickname_sp),
+                Context.MODE_PRIVATE
+            )
+            val isRemoved = sp.edit().remove(id).commit()
+            // Removed?
+            if (!isRemoved) {
+                Toast.makeText(context, "Could not delete stop", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            context.finish()
+        }
     }
 }
