@@ -21,7 +21,7 @@ class AddStopActivity : AppCompatActivity() {
                     Context.MODE_PRIVATE
                 )
             val stopId = activityAddStop.stopId.text.toString()
-            // len == 5
+            // (len == 5)?
             if (stopId.length != 5) {
                 Toast.makeText(
                     this,
@@ -30,7 +30,7 @@ class AddStopActivity : AppCompatActivity() {
                 ).show()
                 return@setOnClickListener
             }
-            // Uniqueness
+            // Unique?
             if (sp.getString(stopId, null) != null) {
                 Toast.makeText(
                     this,
@@ -40,7 +40,7 @@ class AddStopActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             val stopNickname = activityAddStop.stopNickname.text.toString()
-            // 0 < len
+            // (0 < len)?
             if (stopNickname.isEmpty()) {
                 Toast.makeText(
                     this,
@@ -49,7 +49,7 @@ class AddStopActivity : AppCompatActivity() {
                 ).show()
                 return@setOnClickListener
             }
-            // Uniqueness
+            // Unique?
             for ((_, nickname) in sp.all.entries) {
                 if (nickname == stopNickname) {
                     Toast.makeText(

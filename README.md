@@ -21,8 +21,8 @@
     - [x] finish() on remove.
 - [x] Simplify Holder object.
 - [x] Inline shared pref commit() & Error check shared pref commit()
+- [x] Improve validation comments
 - [ ] Improve Toast message
-- [ ] Improve validation comments
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Improve styling.
 - [ ] Decrease num of id references to xml elements.
