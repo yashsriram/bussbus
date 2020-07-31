@@ -8,11 +8,10 @@
 - [ ] Simplify last sync x min ago periodic update.
 - [x] Adding a stop.
     - [x] Where can stop ids be found? - Link provided.
-    - [x] StopId validation: 0 < len <= 6 & uniqueness.
+    - [x] StopId validation: len == 5 & uniqueness.
     - [x] StopName validation: 0 < name & uniqueness.
     - [x] db add
     - [x] finish() on add.
-- [ ] StopId validation: exactly 6?
 - [ ] Read stops from db.
 - [ ] Removing a stop.
     - [ ] Recycler view.

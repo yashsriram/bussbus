@@ -21,20 +21,11 @@ class AddStopActivity : AppCompatActivity() {
                     Context.MODE_PRIVATE
                 )
             val stopId = activityAddStop.stopId.text.toString()
-            // 0 < len
-            if (stopId.isEmpty()) {
+            // len == 5
+            if (stopId.length == 5) {
                 Toast.makeText(
                     this,
-                    "Stop Id can not be empty",
-                    Toast.LENGTH_LONG
-                ).show()
-                return@setOnClickListener
-            }
-            // len <= 6
-            if (stopId.length > 6) {
-                Toast.makeText(
-                    this,
-                    "Stop Id can not be more than 6 chars long",
+                    "Stop Id has to be 5 chars long",
                     Toast.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
