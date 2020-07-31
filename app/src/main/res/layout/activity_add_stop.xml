@@ -52,7 +52,7 @@
         android:autoLink="web"
         android:gravity="center"
         android:padding="20sp"
-        android:text="Stop Id (a.k.a Stop Number) can be found\non bus stop poles or\nat https://www.metrotransit.org/schedules-maps"
+        android:text="Stop Id (a.k.a Stop Number) can be found\non bus stop poles\nor at https://www.metrotransit.org/schedules-maps"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

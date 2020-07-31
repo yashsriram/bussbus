@@ -5,23 +5,23 @@
 - Stops can be added/removed.
 
 ## roadmap
-- [ ] Simplify last sync x min ago periodic update.
+- [x] Scroll view in stop departures activity.
+- [x] Display stop name before requesting departuresList. Useful when departuresList comes with a lag.
 - [x] Adding a stop.
     - [x] Where can stop ids be found? - Link provided.
     - [x] StopId validation: len == 5 & uniqueness.
     - [x] StopName validation: 0 < name & uniqueness.
     - [x] db add
     - [x] finish() on add.
+- [ ] Simplify last sync x min ago periodic update.
 - [ ] Read stops from db.
+- [ ] Updated list on add/remove finish() return.
 - [ ] Removing a stop.
     - [ ] Recycler view.
     - [ ] db remove
     - [ ] finish() on remove.
-- [ ] Updated list on add/remove finish() return.
-- [x] Scroll view in stop departures activity.
-- [x] Display stop name before requesting departuresList. Useful when departuresList comes with a lag.
-- [ ] Decrease num of id references to xml elements.
 - [ ] Improve styling.
+- [ ] Decrease num of id references to xml elements.
 
 ## code
 - This is a minimal android project.
