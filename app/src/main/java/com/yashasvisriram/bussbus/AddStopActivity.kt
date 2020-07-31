@@ -22,7 +22,7 @@ class AddStopActivity : AppCompatActivity() {
                 )
             val stopId = activityAddStop.stopId.text.toString()
             // len == 5
-            if (stopId.length == 5) {
+            if (stopId.length != 5) {
                 Toast.makeText(
                     this,
                     "Stop Id has to be 5 chars long",

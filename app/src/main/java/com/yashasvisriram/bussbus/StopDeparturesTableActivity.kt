@@ -43,15 +43,6 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         }
     }
 
-    // Mock db
-    private val file = arrayListOf(
-        arrayListOf("13209", "CMU1"),
-        arrayListOf("16154", "RecWell"),
-        arrayListOf("16157", "Armory"),
-        arrayListOf("56699", "2@Home"),
-        arrayListOf("16132", "6@Home")
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stop_departures_table)
@@ -70,15 +61,6 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         )
         activityStopDepartures.background =
             ContextCompat.getDrawable(this, backgrounds.random())
-
-        // UI setup
-        for (entry in file) {
-            val row = LayoutInflater.from(this)
-                .inflate(R.layout.stop_departures_row, activityStopDepartures.table, false)
-            row.departuresList.layoutManager =
-                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            activityStopDepartures.table.addView(row)
-        }
 
         // REST service setup
         val retrofit = Retrofit.Builder()
@@ -123,13 +105,28 @@ class StopDeparturesTableActivity : AppCompatActivity() {
     }
 
     private fun sync(apiService: ApiService) {
-        for (i in 0 until file.size) {
+        // Get stops from persistent storage
+        val sp =
+            getSharedPreferences(
+                getString(R.string.stop_id_stop_nickname_sp),
+                Context.MODE_PRIVATE
+            )
+        // Clear all views
+        activityStopDepartures.table.removeAllViews()
+        for ((id, nickname) in sp.all.entries) {
+            // UI setup
+            val row = LayoutInflater.from(this)
+                .inflate(R.layout.stop_departures_row, activityStopDepartures.table, false)
+            row.departuresList.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            activityStopDepartures.table.addView(row)
+            // Fill information
             restCall(
                 apiService,
-                file[i][0],
-                activityStopDepartures.table.getChildAt(i).departuresList,
-                "${file[i][1].padOrTruncateString(7)} ᐅ ",
-                activityStopDepartures.table.getChildAt(i).name
+                id,
+                row.departuresList,
+                "${nickname.toString().padOrTruncateString(7)} ᐅ ",
+                row.name
             )
         }
     }
