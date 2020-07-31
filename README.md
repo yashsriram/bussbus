@@ -11,18 +11,19 @@
     - [x] Where can stop ids be found? - Link provided.
     - [x] StopId validation: len == 5 & uniqueness.
     - [x] StopName validation: 0 < name & uniqueness.
-    - [x] db add
+    - [x] Db add.
     - [x] finish() on add.
 - [x] Read stops from db.
 - [x] Updated list on add/remove finish() return.
 - [x] Removing a stop.
     - [x] Recycler view.
-    - [x] db remove
+    - [x] Db remove.
     - [x] finish() on remove.
 - [x] Simplify Holder object.
 - [x] Inline shared pref commit() & Error check shared pref commit()
 - [x] Improve validation comments
 - [x] Improve Toast messages; add period at the end.
+- [ ] App binary release.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Improve styling.
 - [ ] Decrease num of id references to xml elements.
