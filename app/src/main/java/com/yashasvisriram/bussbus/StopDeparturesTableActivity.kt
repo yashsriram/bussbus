@@ -82,6 +82,11 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         lastSyncRunnable.run()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.activity_stop_departures_table_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.addStop -> {
             val intent = Intent(this, AddStopActivity::class.java)
@@ -89,11 +94,6 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             true
         }
         else -> super.onOptionsItemSelected(item)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.activity_stop_departures_table_menu, menu)
-        return true
     }
 
     override fun onDestroy() {

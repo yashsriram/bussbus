@@ -13,8 +13,8 @@
     - [x] StopName validation: 0 < name & uniqueness.
     - [x] db add
     - [x] finish() on add.
+- [x] Read stops from db.
 - [ ] Simplify last sync x min ago periodic update.
-- [ ] Read stops from db.
 - [ ] Updated list on add/remove finish() return.
 - [ ] Removing a stop.
     - [ ] Recycler view.
