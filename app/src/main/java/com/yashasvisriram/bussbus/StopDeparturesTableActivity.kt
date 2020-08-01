@@ -2,6 +2,7 @@ package com.yashasvisriram.bussbus
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
@@ -109,6 +110,12 @@ class StopDeparturesTableActivity : AppCompatActivity() {
     }
 
     private fun reload(apiService: ApiService) {
+        // If not connected to network, prompt user to connect
+        if ((getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetwork == null) {
+            AlertDialog.Builder(this).setMessage("Please connect to internet.")
+                .setPositiveButton("Ok") { _, _ -> }.create().show()
+            return
+        }
         // Get stops from persistent storage
         val sp =
             getSharedPreferences(
