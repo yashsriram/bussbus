@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.stop_departures_row.view.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class StopDeparturesTableActivity : AppCompatActivity() {
     // REST service
@@ -130,6 +132,11 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 "${nickname.toString().padOrTruncateString(7)} ᐅ ",
                 row.nickname
             )
+        }
+        // No stops => Prompt user to add
+        if (sp.all.entries.size == 0) {
+            AlertDialog.Builder(this).setMessage("Please add some stops by clicking on + icon.")
+                .setPositiveButton("Ok") { _, _ -> }.create().show()
         }
     }
 
