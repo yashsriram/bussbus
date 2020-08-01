@@ -5,7 +5,6 @@
     android:id="@+id/activityStopDepartures"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backdrop1"
     tools:context=".StopDeparturesTableActivity">
 
     <ScrollView

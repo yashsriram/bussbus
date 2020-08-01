@@ -48,20 +48,6 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         setContentView(R.layout.activity_stop_departures_table)
         title = "Departures per stop"
 
-        // Pick a random backdrop
-        val backgrounds = arrayListOf(
-            R.drawable.backdrop1,
-            R.drawable.backdrop2,
-            R.drawable.backdrop3,
-            R.drawable.backdrop4,
-            R.drawable.backdrop5,
-            R.drawable.backdrop6,
-            R.drawable.backdrop7,
-            R.drawable.backdrop8
-        )
-        activityStopDepartures.background =
-            ContextCompat.getDrawable(this, backgrounds.random())
-
         // REST service setup
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
