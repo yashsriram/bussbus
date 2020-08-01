@@ -6,7 +6,8 @@
 
 ## roadmap
 - [x] Scroll view in stop departures activity.
-- [x] Display stop name before requesting departuresList. Useful when departuresList comes with a lag.
+- [x] Display stop name before requesting departuresList. Useful in case of laggy response.
+- [x] Update last sync state in sync() rather than in success callback. Safer choice in case of laggy response.
 - [x] Adding a stop.
     - [x] Where can stop ids be found? - Link provided.
     - [x] StopId validation: len == 5 & uniqueness.
@@ -21,8 +22,7 @@
     - [x] finish() on remove.
 - [x] Simplify Holder object.
 - [x] Inline shared pref commit() & Error check shared pref commit()
-- [x] Improve validation comments
-- [x] Improve Toast messages; add period at the end.
+- [x] Improve validation comments, Improve Toast messages; add period at the end.
 - [x] Remove background pictures if copyrighted.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Improve styling.

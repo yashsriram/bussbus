@@ -138,6 +138,9 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             AlertDialog.Builder(this).setMessage("Please add some stops by clicking on + icon.")
                 .setPositiveButton("Ok") { _, _ -> }.create().show()
         }
+        // Update last sync state
+        lastSyncTimestamp = System.currentTimeMillis()
+        updateTimeSinceLastSync()
     }
 
     private fun restCall(
@@ -156,8 +159,6 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
                     stopDeparturesListView.adapter =
                         StopDeparturesAdapter(stopDepartures, this@StopDeparturesTableActivity)
-                    lastSyncTimestamp = System.currentTimeMillis()
-                    updateTimeSinceLastSync()
                 }
 
                 override fun onSubscribe(d: Disposable) {
