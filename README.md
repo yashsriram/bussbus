@@ -24,9 +24,9 @@
 - [x] Inline shared pref commit() & Error check shared pref commit()
 - [x] Improve validation comments, Improve Toast messages; add period at the end.
 - [x] Remove background pictures if copyrighted.
+- [x] Improve styling.
+- [x] Decrease num of id references to xml elements.
 - [ ] Simplify last sync x min ago periodic update.
-- [ ] Improve styling.
-- [ ] Decrease num of id references to xml elements.
 - [ ] Demo.
 - [ ] App binary release on github.
 - [ ] Release on play store and ad on reddit.
