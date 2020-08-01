@@ -27,10 +27,10 @@
 - [x] Improve styling.
 - [x] Decrease num of id references to xml elements.
 - [x] Check internet connection.
-- [ ] Simplify last sync x min ago periodic update.
 - [ ] Demo.
 - [ ] App binary release on github.
 - [ ] Release on play store and ad on reddit.
+- [ ] Simplify last sync x min ago periodic update.
 - [ ] Check internet connection idiomatically.
 
 ## code

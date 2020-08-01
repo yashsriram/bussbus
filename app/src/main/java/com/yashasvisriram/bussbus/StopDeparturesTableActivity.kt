@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
@@ -32,17 +33,13 @@ class StopDeparturesTableActivity : AppCompatActivity() {
     private val baseUrl = "https://svc.metrotransit.org/"
     private val compositeDisposable = CompositeDisposable()
 
-    // Keeping track of last synced time
+    // Periodically display lastest sync status
     private var lastSyncTimestamp = System.currentTimeMillis()
-    private val checkInterval = 5000L
-    private val lastSyncHandler: Handler = Handler()
-    private val lastSyncRunnable: Runnable = object : Runnable {
+    private val uiThreadHandler = Handler(Looper.getMainLooper())
+    private val displayLatestSyncStatusPeriodically = object : Runnable {
         override fun run() {
-            try {
-                updateTimeSinceLastSync()
-            } finally {
-                lastSyncHandler.postDelayed(this, checkInterval)
-            }
+            updateSyncStatus()
+            uiThreadHandler.postDelayed(this, 5000)
         }
     }
 
@@ -67,8 +64,8 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             reload(apiService)
         }
 
-        // Time since last sync setup
-        lastSyncRunnable.run()
+        // Update time since last sync
+        uiThreadHandler.post(displayLatestSyncStatusPeriodically)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -106,7 +103,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             compositeDisposable.dispose()
         }
         super.onDestroy()
-        lastSyncHandler.removeCallbacks(lastSyncRunnable)
+        uiThreadHandler.removeCallbacks(displayLatestSyncStatusPeriodically)
     }
 
     private fun reload(apiService: ApiService) {
@@ -147,7 +144,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         }
         // Update last sync state
         lastSyncTimestamp = System.currentTimeMillis()
-        updateTimeSinceLastSync()
+        updateSyncStatus()
     }
 
     private fun restCall(
@@ -182,7 +179,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             })
     }
 
-    private fun updateTimeSinceLastSync() {
+    private fun updateSyncStatus() {
         val timeSinceLastSyncInMillis = System.currentTimeMillis() - lastSyncTimestamp
         activityStopDepartures.sync.text = "${timeSinceLastSyncInMillis / 1000 / 60} min ago"
     }
