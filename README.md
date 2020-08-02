@@ -56,6 +56,6 @@
 
 Works well in landscape mode too.
 | | |
-| Adding a stop | ![](./githib/add.jpg) |
-| Removing a stop | ![](./githib/remove.jpg) |
-| Viewing departures | ![](./githib/view.jpg) |
+| Adding a stop | ![](./github/add.jpg) |
+| Removing a stop | ![](./github/remove.jpg) |
+| Viewing departures | ![](./github/view.jpg) |
