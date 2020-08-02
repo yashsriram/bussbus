@@ -2,7 +2,6 @@
 
 ## description
 - A simple tool for quickly glancing MetroTransit bus departures in Minneapolis/St. Paul.
-- Stops can be added/removed.
 
 ## roadmap
 - [x] Scroll view in stop departures activity.
@@ -27,8 +26,7 @@
 - [x] Improve styling.
 - [x] Decrease num of id references to xml elements.
 - [x] Check internet connection.
-- [ ] Demo.
-- [ ] App binary release on github.
+- [x] Demo.
 - [ ] Release on play store and ad on reddit.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Check internet connection idiomatically.
@@ -44,9 +42,20 @@
 - Install the app on an android device.
 - Add some stops (using respective stop ids) and give them (unique) names.
 - The departures from those stops shall appear.
-- The departures are not automatically updated. A sync button on the bottom shows how long ago was the last sync. Press that button to sync again.
 - Similarly remove stops when not needed.
+- The departures are not automatically updated. A sync button on the bottom shows how long ago was the last sync. Press that button to sync again.
 - No login required.
 - If a stop's departures can not be fetched, its id might be wrong. Try removing and adding it again.
 
 ## demonstration
+| | |
+| --- | --- |
+| Adding a stop | ![](./github/add.gif) |
+| Removing a stop | ![](./github/remove.gif) |
+| Sync | ![](./github/sync.gif) |
+
+Works well in landscape mode too.
+| | |
+| Adding a stop | ![](./githib/add.jpg) |
+| Removing a stop | ![](./githib/remove.jpg) |
+| Viewing departures | ![](./githib/view.jpg) |
