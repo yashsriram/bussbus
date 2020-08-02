@@ -54,8 +54,15 @@
 | Removing a stop | ![](./github/remove.gif) |
 | Sync | ![](./github/sync.gif) |
 
-Works well in landscape mode too.
-| | |
-| Adding a stop | ![](./github/add.jpg) |
-| Removing a stop | ![](./github/remove.jpg) |
-| Viewing departures | ![](./github/view.jpg) |
+### landscape mode
+- Adding a stop
+
+![](./github/add.jpg)
+
+- Removing a stop
+
+![](./github/remove.jpg)
+
+- Viewing departures
+
+![](./github/view.jpg)
