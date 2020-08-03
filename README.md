@@ -4,7 +4,7 @@
 - A simple tool for quickly glancing MetroTransit bus departures in Minneapolis/St. Paul.
 
 ## code
-- This is a minimal android project.
+- This is a minimal android project in `Kotlin`.
 - Uses MetroTransit public API <https://svc.metrotransit.org/nextrip>.
 
 ## documentation
