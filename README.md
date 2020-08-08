@@ -63,6 +63,6 @@
 - [x] Decrease num of id references to xml elements.
 - [x] Check internet connection.
 - [x] Demo.
-- [ ] Release on play store and ad on reddit.
+- [ ] Release on play store and post about it.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Check internet connection idiomatically.
