@@ -1,7 +1,7 @@
 # bussbus
 
 ## description
-- A simple tool for quickly glancing MetroTransit bus departures in Minneapolis/St. Paul.
+- A simple tool for quickly glancing MetroTransit departures in Minneapolis/St. Paul.
 
 ## code
 - This is a minimal android project in `Kotlin`.
