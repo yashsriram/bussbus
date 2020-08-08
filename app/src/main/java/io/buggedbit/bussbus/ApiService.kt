@@ -1,4 +1,4 @@
-package com.yashasvisriram.bussbus
+package io.buggedbit.bussbus
 
 import io.reactivex.Single
 import retrofit2.http.GET

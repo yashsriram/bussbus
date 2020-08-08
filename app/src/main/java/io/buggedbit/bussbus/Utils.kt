@@ -1,4 +1,4 @@
-package com.yashasvisriram.bussbus
+package io.buggedbit.bussbus
 
 fun String.padOrTruncateString(len: Int): String {
     return if (len <= length) {

@@ -1,4 +1,4 @@
-package com.yashasvisriram.bussbus
+package io.buggedbit.bussbus
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

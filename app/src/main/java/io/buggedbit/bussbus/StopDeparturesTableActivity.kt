@@ -1,4 +1,4 @@
-package com.yashasvisriram.bussbus
+package io.buggedbit.bussbus
 
 import android.content.Context
 import android.content.Intent
@@ -162,7 +162,10 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             .subscribe(object : SingleObserver<List<StopDeparture>?> {
                 override fun onSuccess(stopDepartures: List<StopDeparture>) {
                     stopDeparturesListView.adapter =
-                        StopDeparturesAdapter(stopDepartures, this@StopDeparturesTableActivity)
+                        StopDeparturesAdapter(
+                            stopDepartures,
+                            this@StopDeparturesTableActivity
+                        )
                 }
 
                 override fun onSubscribe(d: Disposable) {
@@ -204,8 +207,12 @@ private class StopDeparturesAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val departure = departures[position]
         holder.view.background = when (departure.actual) {
-            true -> ContextCompat.getDrawable(context, R.drawable.live_departure)
-            false -> ContextCompat.getDrawable(context, R.drawable.normal_departure)
+            true -> ContextCompat.getDrawable(context,
+                R.drawable.live_departure
+            )
+            false -> ContextCompat.getDrawable(context,
+                R.drawable.normal_departure
+            )
         }
         holder.view.setPadding(40, 20, 40, 20)
         holder.view.due.text = departure.departureText!!.padOrTruncateString(7)

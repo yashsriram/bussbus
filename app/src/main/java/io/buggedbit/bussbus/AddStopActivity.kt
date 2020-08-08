@@ -1,4 +1,4 @@
-package com.yashasvisriram.bussbus
+package io.buggedbit.bussbus
 
 import android.content.Context
 import android.os.Bundle

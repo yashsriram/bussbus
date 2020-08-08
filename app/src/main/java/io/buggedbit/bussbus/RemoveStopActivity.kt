@@ -1,4 +1,4 @@
-package com.yashasvisriram.bussbus
+package io.buggedbit.bussbus
 
 import android.content.Context
 import android.os.Bundle
@@ -26,7 +26,12 @@ class RemoveStopActivity : AppCompatActivity() {
         activityRemoveStop.table.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         activityRemoveStop.table.adapter =
-            StopsAdapter(sp.all.map { Pair(it.key!!, it.value!!.toString()) }, this)
+            StopsAdapter(sp.all.map {
+                Pair(
+                    it.key!!,
+                    it.value!!.toString()
+                )
+            }, this)
 
     }
 }

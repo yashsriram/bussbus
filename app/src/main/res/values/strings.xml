@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">BussBus</string>
-    <string name="stop_id_stop_nickname_sp">com.yashasvisriram.bussbus.stop_id_stop_nickname_sp</string>
+    <string name="stop_id_stop_nickname_sp">io.buggedbit.bussbus.stop_id_stop_nickname_sp</string>
 </resources>

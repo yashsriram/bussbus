@@ -8,7 +8,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
     defaultConfig {
-        applicationId "com.yashasvisriram.bussbus"
+        applicationId "io.buggedbit.bussbus"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
