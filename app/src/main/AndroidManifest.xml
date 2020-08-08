@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
         <activity android:name=".RemoveStopActivity" />
-        <activity android:name=".AddStopActivity" />
+        <activity
+            android:name=".AddStopActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".StopDeparturesTableActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

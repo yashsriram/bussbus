@@ -2,11 +2,10 @@ package io.buggedbit.bussbus
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_add_stop.*
 import kotlinx.android.synthetic.main.activity_add_stop.view.*
-
 
 class AddStopActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,39 +22,39 @@ class AddStopActivity : AppCompatActivity() {
             val stopId = activityAddStop.stopId.text.toString()
             // (len == 5)?
             if (stopId.length != 5) {
-                Toast.makeText(
-                    this,
+                Snackbar.make(
+                    activityAddStop.add,
                     "Stop Id has to be 5 chars long.",
-                    Toast.LENGTH_LONG
+                    Snackbar.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
             }
             // Unique?
             if (sp.getString(stopId, null) != null) {
-                Toast.makeText(
-                    this,
+                Snackbar.make(
+                    activityAddStop.add,
                     "This stop is already added.",
-                    Toast.LENGTH_LONG
+                    Snackbar.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
             }
             val stopNickname = activityAddStop.stopNickname.text.toString()
             // (0 < len)?
             if (stopNickname.isEmpty()) {
-                Toast.makeText(
-                    this,
+                Snackbar.make(
+                    activityAddStop.add,
                     "Stop Nickname can not be empty.",
-                    Toast.LENGTH_LONG
+                    Snackbar.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
             }
             // Unique?
             for ((_, nickname) in sp.all.entries) {
                 if (nickname == stopNickname) {
-                    Toast.makeText(
-                        this,
+                    Snackbar.make(
+                        activityAddStop.add,
                         "This nickname is already used. Please use something else.",
-                        Toast.LENGTH_LONG
+                        Snackbar.LENGTH_LONG
                     ).show()
                     return@setOnClickListener
                 }
@@ -63,7 +62,11 @@ class AddStopActivity : AppCompatActivity() {
             val isAdded = sp.edit().putString(stopId, stopNickname).commit()
             // Added?
             if (!isAdded) {
-                Toast.makeText(this, "Could not add stop.", Toast.LENGTH_LONG).show()
+                Snackbar.make(
+                    activityAddStop.add,
+                    "Could not add stop.",
+                    Snackbar.LENGTH_LONG
+                ).show()
                 return@setOnClickListener
             }
             finish()
