@@ -8,12 +8,12 @@ import android.os.Handler
 import android.os.Looper
 import android.view.*
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -133,7 +133,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 apiService,
                 id,
                 row.departuresList,
-                "${nickname.toString().padOrTruncateString(7)} ᐅ ",
+                nickname.toString(),
                 row.nickname
             )
         }
@@ -151,10 +151,10 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         apiService: ApiService,
         stopId: String,
         stopDeparturesListView: RecyclerView,
-        stopName: String,
-        stopNameView: TextView
+        stopNickname: String,
+        stopNicknameView: TextView
     ) {
-        stopNameView.text = stopName
+        stopNicknameView.text = "${stopNickname.padOrTruncateString(7)} ᐅ "
         val stopDeparturesListFuture = apiService.getStopDepartures(stopId)
         stopDeparturesListFuture!!
             .subscribeOn(Schedulers.io())
@@ -173,10 +173,10 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable) {
-                    Toast.makeText(
-                        this@StopDeparturesTableActivity,
-                        "Could not get departures from $stopName (Stop #$stopId).",
-                        Toast.LENGTH_LONG
+                    Snackbar.make(
+                        activityStopDepartures,
+                        "Could not get departures from: $stopNickname (Stop Id#$stopId).",
+                        Snackbar.LENGTH_LONG
                     ).show()
                 }
             })
@@ -207,10 +207,12 @@ private class StopDeparturesAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val departure = departures[position]
         holder.view.background = when (departure.actual) {
-            true -> ContextCompat.getDrawable(context,
+            true -> ContextCompat.getDrawable(
+                context,
                 R.drawable.live_departure
             )
-            false -> ContextCompat.getDrawable(context,
+            false -> ContextCompat.getDrawable(
+                context,
                 R.drawable.normal_departure
             )
         }

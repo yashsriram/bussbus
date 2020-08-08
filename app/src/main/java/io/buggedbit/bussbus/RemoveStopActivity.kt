@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_remove_stop.*
 import kotlinx.android.synthetic.main.activity_remove_stop.view.*
 import kotlinx.android.synthetic.main.stop_remove.view.*
@@ -64,7 +64,11 @@ private class StopsAdapter(
             val isRemoved = sp.edit().remove(id).commit()
             // Removed?
             if (!isRemoved) {
-                Toast.makeText(context, "Could not delete stop.", Toast.LENGTH_LONG).show()
+                Snackbar.make(
+                    holder.view.remove,
+                    "Could not delete stop: $nickname.",
+                    Snackbar.LENGTH_LONG
+                ).show()
                 return@setOnClickListener
             }
             context.finish()

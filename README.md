@@ -57,12 +57,13 @@
     - [x] finish() on remove.
 - [x] Simplify Holder object.
 - [x] Inline shared pref commit() & Error check shared pref commit()
-- [x] Improve validation comments, Improve Toast messages; add period at the end.
+- [x] Improve validation comments, Improve messages; add period at the end.
 - [x] Remove background pictures if copyrighted.
 - [x] Improve styling.
 - [x] Decrease num of id references to xml elements.
 - [x] Check internet connection.
 - [x] Demo.
+- [x] Improves validation message display in AddStopActivity. (Uses above keyboard Snackbars)
 - [ ] Release on play store and post about it.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Check internet connection idiomatically.
