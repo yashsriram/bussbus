@@ -17,6 +17,7 @@
 - Similarly remove stops when not needed.
 - The departures are not automatically updated. A sync button on the bottom shows how long ago was the last sync. Press that button to sync again.
 - No login required.
+- No location permission needed.
 - If a stop's departures can not be fetched, its id might be wrong. Try removing and adding it again.
 
 ## demonstration
