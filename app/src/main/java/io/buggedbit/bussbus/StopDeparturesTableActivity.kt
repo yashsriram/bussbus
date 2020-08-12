@@ -32,8 +32,9 @@ class StopDeparturesTableActivity : AppCompatActivity() {
     // REST service
     private val baseUrl = "https://svc.metrotransit.org/"
     private val compositeDisposable = CompositeDisposable()
+    private lateinit var apiService: ApiService
 
-    // Periodically display lastest sync status
+    // Periodically display sync status
     private var lastSyncTimestamp = System.currentTimeMillis()
     private val uiThreadHandler = Handler(Looper.getMainLooper())
     private val displayLatestSyncStatusPeriodically = object : Runnable {
@@ -54,7 +55,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-        val apiService = retrofit.create(ApiService::class.java)
+        apiService = retrofit.create(ApiService::class.java)
 
         // Initial REST call
         reload(apiService)
@@ -89,12 +90,6 @@ class StopDeparturesTableActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
-        val apiService = retrofit.create(ApiService::class.java)
         reload(apiService)
     }
 
