@@ -27,18 +27,31 @@
 | Removing a stop | ![](./github/remove.gif) |
 | Sync | ![](./github/sync.gif) |
 
-### landscape mode
+### portrait mode
 - Adding a stop
 
-![](./github/add.jpg)
+![](./github/add_portrait.jpg)
 
 - Removing a stop
 
-![](./github/remove.jpg)
+![](./github/remove_portrait.jpg)
 
 - Viewing departures
 
-![](./github/view.jpg)
+![](./github/view_portrait.jpg)
+
+### landscape mode
+- Adding a stop
+
+![](./github/add_landscape.jpg)
+
+- Removing a stop
+
+![](./github/remove_landscape.jpg)
+
+- Viewing departures
+
+![](./github/view_landscape.jpg)
 
 ## roadmap
 - [x] Scroll view in stop departures activity.
