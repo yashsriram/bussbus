@@ -28,17 +28,9 @@
 | Sync | ![](./github/sync.gif) |
 
 ### portrait mode
-- Adding a stop
-
-![](./github/add_portrait.jpg)
-
-- Removing a stop
-
-![](./github/remove_portrait.jpg)
-
-- Viewing departures
-
-![](./github/view_portrait.jpg)
+| Adding a stop | Removing a stop | Viewing departures |
+| --- | --- | --- |
+| ![](./github/add_portrait.jpg) | ![](./github/remove_portrait.jpg) | ![](./github/view_portrait.jpg) |
 
 ### landscape mode
 - Adding a stop
