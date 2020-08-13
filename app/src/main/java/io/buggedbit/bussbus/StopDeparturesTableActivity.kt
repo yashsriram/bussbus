@@ -213,6 +213,16 @@ private class StopDeparturesAdapter(
             )
         }
         holder.view.setPadding(40, 20, 40, 20)
+        holder.view.setOnClickListener {
+            Snackbar.make(
+                holder.view,
+                when (departure.actual) {
+                    true -> "Live departure."
+                    false -> "Scheduled departure."
+                },
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
         holder.view.due.text = departure.departureText!!.padOrTruncateString(6)
         holder.view.route.text = departure.route!!.padOrTruncateString(1)
         holder.view.terminal.text = departure.terminal!!.padOrTruncateString(1)
