@@ -73,6 +73,6 @@
 - [x] Limit stop nickname len.
 - [x] Improve Layout rules in Stop Departures.
 - [x] Update demos.
-- [ ] Release on play store and post about it.
+- [x] Release on play store.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Check internet connection idiomatically.
