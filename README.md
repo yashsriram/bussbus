@@ -64,7 +64,9 @@
 - [x] Decrease num of id references to xml elements.
 - [x] Check internet connection.
 - [x] Demo.
-- [x] Improves validation message display in AddStopActivity. (Uses above keyboard Snackbars)
+- [x] Improves validation message display in AddStopActivity. (Uses above keyboard Snackbars).
+- [x] Limit stop nickname len.
+- [x] Improve Layout rules in Stop Departures.
 - [ ] Release on play store and post about it.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Check internet connection idiomatically.

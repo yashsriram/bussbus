@@ -29,6 +29,7 @@
         android:gravity="center"
         android:hint="Stop Nickname"
         android:inputType="textPersonName"
+        android:maxLength="@integer/stop_nickname_max_len"
         android:padding="30sp"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"

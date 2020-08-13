@@ -24,7 +24,7 @@ class AddStopActivity : AppCompatActivity() {
             if (stopId.length != 5) {
                 Snackbar.make(
                     activityAddStop.add,
-                    "Stop Id has to be 5 chars long.",
+                    "Stop id has to be 5 chars long.",
                     Snackbar.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
@@ -43,7 +43,16 @@ class AddStopActivity : AppCompatActivity() {
             if (stopNickname.isEmpty()) {
                 Snackbar.make(
                     activityAddStop.add,
-                    "Stop Nickname can not be empty.",
+                    "Stop nickname can not be empty.",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
+            // (len <= MAX)?
+            if (stopNickname.length > resources.getInteger(R.integer.stop_nickname_max_len)) {
+                Snackbar.make(
+                    activityAddStop.add,
+                    "Stop nickname can not be more than ${resources.getInteger(R.integer.stop_nickname_max_len)} chars long.",
                     Snackbar.LENGTH_LONG
                 ).show()
                 return@setOnClickListener

@@ -116,6 +116,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             )
         // Clear all views
         activityStopDepartures.table.removeAllViews()
+        val maxLenNickname = sp.all.entries.map { it.value.toString().length }.max()
         for ((id, nickname) in sp.all.entries) {
             // UI setup
             val row = LayoutInflater.from(this)
@@ -128,7 +129,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 apiService,
                 id,
                 row.departuresList,
-                nickname.toString(),
+                "${nickname.toString().padOrTruncateString(maxLenNickname!!)} ᐅ",
                 row.nickname
             )
         }
@@ -149,7 +150,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
         stopNickname: String,
         stopNicknameView: TextView
     ) {
-        stopNicknameView.text = "${stopNickname.padOrTruncateString(7)} ᐅ "
+        stopNicknameView.text = stopNickname
         val stopDeparturesListFuture = apiService.getStopDepartures(stopId)
         stopDeparturesListFuture!!
             .subscribeOn(Schedulers.io())
@@ -212,7 +213,7 @@ private class StopDeparturesAdapter(
             )
         }
         holder.view.setPadding(40, 20, 40, 20)
-        holder.view.due.text = departure.departureText!!.padOrTruncateString(7)
+        holder.view.due.text = departure.departureText!!.padOrTruncateString(6)
         holder.view.route.text = departure.route!!.padOrTruncateString(1)
         holder.view.terminal.text = departure.terminal!!.padOrTruncateString(1)
     }
