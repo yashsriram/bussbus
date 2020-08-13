@@ -116,8 +116,8 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             )
         // Clear all views
         activityStopDepartures.table.removeAllViews()
-        val maxLenNickname = sp.all.entries.map { it.value.toString().length }.max()
-        for ((id, nickname) in sp.all.entries) {
+        for ((i, stop) in sp.all.entries.withIndex()) {
+            val (id, nickname) = stop
             // UI setup
             val row = LayoutInflater.from(this)
                 .inflate(R.layout.stop_departures_row, activityStopDepartures.table, false)
@@ -129,7 +129,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 apiService,
                 id,
                 row.departuresList,
-                "${nickname.toString().padOrTruncateString(maxLenNickname!!)} ᐅ",
+                "${i + 1}: ${nickname.toString()}",
                 row.nickname
             )
         }
