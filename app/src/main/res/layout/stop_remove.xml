@@ -11,6 +11,7 @@
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="monospace"
         android:text="16154" />
@@ -20,15 +21,17 @@
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:fontFamily="monospace"
         android:text="RecWell" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove"
-        app:icon="@drawable/ic_minus" />
+        android:layout_gravity="center"
+        android:src="@drawable/ic_minus"
+        app:backgroundTint="#FF0000" />
 
 </LinearLayout>

@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="30sp"
         android:text="Add"
+        app:backgroundTint="#00FF00"
         app:icon="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
