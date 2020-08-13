@@ -116,8 +116,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
             )
         // Clear all views
         activityStopDepartures.table.removeAllViews()
-        for ((i, stop) in sp.all.entries.withIndex()) {
-            val (id, nickname) = stop
+        for ((id, nickname) in sp.all.entries) {
             // UI setup
             val row = LayoutInflater.from(this)
                 .inflate(R.layout.stop_departures_row, activityStopDepartures.table, false)
@@ -129,7 +128,7 @@ class StopDeparturesTableActivity : AppCompatActivity() {
                 apiService,
                 id,
                 row.departuresList,
-                "${i + 1}: ${nickname.toString()}",
+                nickname.toString(),
                 row.nickname
             )
         }
@@ -217,8 +216,8 @@ private class StopDeparturesAdapter(
             Snackbar.make(
                 holder.view,
                 when (departure.actual) {
-                    true -> "Live departure."
-                    false -> "Scheduled departure."
+                    true -> "This is a live departure."
+                    false -> "This is scheduled departure."
                 },
                 Snackbar.LENGTH_SHORT
             ).show()
