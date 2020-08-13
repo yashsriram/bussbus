@@ -30,15 +30,16 @@ class AddStopActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             // Unique?
-            if (sp.getString(stopId, null) != null) {
+            val prevStopNickname = sp.getString(stopId, null)
+            if (prevStopNickname != null) {
                 Snackbar.make(
                     activityAddStop.add,
-                    "This stop is already added.",
+                    "This stop is already added as \"$prevStopNickname\".",
                     Snackbar.LENGTH_LONG
                 ).show()
                 return@setOnClickListener
             }
-            val stopNickname = activityAddStop.stopNickname.text.toString()
+            val stopNickname = activityAddStop.stopNickname.text.toString().trim()
             // (0 < len)?
             if (stopNickname.isEmpty()) {
                 Snackbar.make(
