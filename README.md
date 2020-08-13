@@ -72,7 +72,7 @@
 - [x] Improves validation message display in AddStopActivity. (Uses above keyboard Snackbars).
 - [x] Limit stop nickname len.
 - [x] Improve Layout rules in Stop Departures.
-- [ ] Update demos.
+- [x] Update demos.
 - [ ] Release on play store and post about it.
 - [ ] Simplify last sync x min ago periodic update.
 - [ ] Check internet connection idiomatically.
