@@ -11,6 +11,8 @@
 - The documentation for the code is itself.
 
 ## usage
+- The app is targetted towards people who use some metro transport stops frequently. For example, going to work, coming back home, going to grocery store...
+- Find the app at [Play Store](https://play.google.com/store/apps/details?id=io.buggedbit.bussbus).
 - Install the app on an android device.
 - Add some stops (using respective stop ids) and give them (unique) names.
 - The departures from those stops shall appear.
